@@ -38,6 +38,21 @@
     color: white; 
     box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Le da profundidad */
 }
+
+/* Estado Normal: Gris con borde gris */
+.btn-cerrar {
+    color: #6c757d; /* Color de texto gris (Bootstrap secondary) */
+    background-color: transparent;
+    border-color: #6c757d; /* Borde gris */
+    transition: all 0.3s ease; /* Suaviza el cambio de color */
+}
+
+/* Estado Hover: Rojo al pasar el mouse (Efecto outline danger) */
+.btn-cerrar:hover {
+    color: #fff; /* Texto blanco */
+    background-color: #dc3545; /* Fondo rojo (Bootstrap danger) */
+    border-color: #dc3545; /* Borde rojo */
+}
     </style>
 </head>
 <body>
@@ -53,7 +68,7 @@
                 <li class="nav-item mb-2"><a class="nav-link text-white fw-bold" href="#"> Inicio</a></li>
                 <li class="nav-item mb-2"><a class="nav-link text-white" href="UsuarioServlet?accion=listar">Usuarios</a></li>
                 <li class="nav-item mb-2"><a class="nav-link text-white" href="VehiculoServlet?accion=listar">Vehículos</a></li>
-                <li class="nav-item mt-4"><a class="btn btn-outline-danger btn-sm w-100" href="index.jsp">Cerrar Sesión</a></li>
+                <li class="nav-item mt-4"><a class="btn btn-cerrar btn-sm w-100" href="index.jsp">Cerrar Sesión</a></li>
             </ul>
         </nav>
 
