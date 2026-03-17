@@ -25,7 +25,7 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Email</th>
-                            <th>Acciones</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -35,10 +35,7 @@
                                 <td>${user.nombre}</td>
                                 <td>${user.apellido}</td>
                                 <td>${user.email}</td>
-                                <td>
-                                    <a href="UsuarioServlet?accion=editar&id=${user.id_usuario}" class="btn btn-sm btn-warning">Editar</a>
-                                    <a href="UsuarioServlet?accion=eliminar&id=${user.id_usuario}" class="btn btn-sm btn-danger">Borrar</a>
-                                </td>
+                               
                             </tr>
                         </c:forEach>
                     </tbody>
