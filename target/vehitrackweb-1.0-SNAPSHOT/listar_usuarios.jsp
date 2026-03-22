@@ -1,4 +1,12 @@
+<%-- 
+    Página: listar_usuarios.jsp
+    Descripción: Muestra la tabla con todos los usuarios registrados en VehiTrack.
+    Recibe la lista de usuarios desde el UsuarioServlet mediante el atributo "usuarios".
+    Utiliza JSTL (c:forEach) para recorrer e imprimir la lista dinámicamente.
+    Autor: Tania Quezada
+--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- Importación de la librería JSTL core para usar etiquetas como c:forEach --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -25,21 +33,24 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Email</th>
-                           
                         </tr>
                     </thead>
                     <tbody>
+                        <%-- c:forEach recorre la lista "usuarios" enviada desde el Servlet --%>
                         <c:forEach var="user" items="${usuarios}">
                             <tr>
+                                <%-- Cada ${} imprime el valor del atributo del objeto usuario --%>
                                 <td>${user.id_usuario}</td>
                                 <td>${user.nombre}</td>
                                 <td>${user.apellido}</td>
                                 <td>${user.email}</td>
-                               
+                                <td>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
+                <%-- Botón para regresar al panel principal --%>
                 <a href="panel.jsp" class="btn btn-secondary">Volver al Panel</a>
             </div>
         </div>

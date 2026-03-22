@@ -1,3 +1,9 @@
+<%-- 
+    Página: index.jsp
+    Descripción: Página principal de VehiTrack. Contiene el formulario de login
+    y el acceso para crear una cuenta nueva.
+    Autor: Tania Quezada
+--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -110,37 +116,39 @@
                 <p class="text-muted">Ingresa tus credenciales para acceder</p>
             </div>
             
-                                    <%-- Mostrar mensaje de error si el login falla --%>
-                        <% if(request.getParameter("error") != null) { %>
-                            <div class="alert alert-danger text-center p-2 small mb-3" role="alert">
-                                <strong>Error:</strong> Correo o contraseña incorrectos.
-                            </div>
-                        <% } %>
+            <%-- Mostrar mensaje de error si el login falla --%>
+            <% if(request.getParameter("error") != null) { %>
+                <div class="alert alert-danger text-center p-2 small mb-3" role="alert">
+                    <strong>Error:</strong> Correo o contraseña incorrectos.
+                </div>
+            <% } %>
 
-                        <%-- Mostrar mensaje si viene de un registro exitoso --%>
-                        <% if(request.getParameter("registro") != null) { %>
-                            <div class="alert alert-success text-center p-2 small mb-3" role="alert">
-                                ¡Registro exitoso! Ya puedes ingresar.
-                            </div>
-                        <% } %>
+            <%-- Mostrar mensaje si viene de un registro exitoso --%>
+            <% if(request.getParameter("registro") != null) { %>
+                <div class="alert alert-success text-center p-2 small mb-3" role="alert">
+                    ¡Registro exitoso! Ya puedes ingresar.
+                </div>
+            <% } %>
 
-             <form action="${pageContext.request.contextPath}/UsuarioServlet" method="POST">
+            <%-- Formulario de login: envía los datos al UsuarioServlet mediante POST --%>
+            <form action="${pageContext.request.contextPath}/UsuarioServlet" method="POST">
+                <%-- Campo oculto que indica al Servlet qué acción ejecutar --%>
                 <input type="hidden" name="accion" value="ingresar">
     
-               <div class="mb-3">
-               <label class="form-label fw-semibold text-muted">Correo Electrónico</label>
-               <input type="email" name="txtEmail" class="form-control form-control-lg bg-light" placeholder="usuario@correo.com" required>
-             </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold text-muted">Correo Electrónico</label>
+                    <input type="email" name="txtEmail" class="form-control form-control-lg bg-light" placeholder="usuario@correo.com" required>
+                </div>
     
-            <div class="mb-4">
-                <label class="form-label fw-semibold text-muted">Contraseña</label>
-                <input type="password" name="txtPass" class="form-control form-control-lg bg-light" placeholder="••••••••" required>
-            </div>
+                <div class="mb-4">
+                    <label class="form-label fw-semibold text-muted">Contraseña</label>
+                    <input type="password" name="txtPass" class="form-control form-control-lg bg-light" placeholder="••••••••" required>
+                </div>
     
-            <div class="d-grid gap-3">
-                <button type="submit" class="btn btn-primary btn-lg shadow-sm">Entrar al Sistema</button>
-                <a href="${pageContext.request.contextPath}/UsuarioServlet?accion=nuevo" class="btn btn-outline-secondary btn-lg">Crear Cuenta Nueva</a>
-            </div>
+                <div class="d-grid gap-3">
+                    <button type="submit" class="btn btn-primary btn-lg shadow-sm">Entrar al Sistema</button>
+                    <a href="${pageContext.request.contextPath}/UsuarioServlet?accion=nuevo" class="btn btn-outline-secondary btn-lg">Crear Cuenta Nueva</a>
+                </div>
             </form>
             
             <div class="text-center mt-5 text-muted small">

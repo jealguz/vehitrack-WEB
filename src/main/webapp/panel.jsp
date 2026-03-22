@@ -1,3 +1,10 @@
+<%-- 
+    Página: panel.jsp
+    Descripción: Panel principal de VehiTrack. Muestra las opciones de navegación
+    del sistema tras un login exitoso. Verifica que haya una sesión activa antes
+    de mostrar el contenido.
+    Autor: Jeison Guzman
+--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true" %>
 <%
@@ -32,33 +39,34 @@
         .logo-panel { max-width: 150px; }
         
         .sidebar { 
-    /* Este es un azul marino profundo (Hex: #0a2351) */
-    background-color: #0a2351; 
-    min-height: 100vh; 
-    color: white; 
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Le da profundidad */
-}
+            /* Este es un azul marino profundo (Hex: #0a2351) */
+            background-color: #0a2351; 
+            min-height: 100vh; 
+            color: white; 
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Le da profundidad */
+        }
 
-/* Estado Normal: Gris con borde gris */
-.btn-cerrar {
-    color: #6c757d; /* Color de texto gris (Bootstrap secondary) */
-    background-color: transparent;
-    border-color: #6c757d; /* Borde gris */
-    transition: all 0.3s ease; /* Suaviza el cambio de color */
-}
+        /* Estado Normal: Gris con borde gris */
+        .btn-cerrar {
+            color: #6c757d;
+            background-color: transparent;
+            border-color: #6c757d;
+            transition: all 0.3s ease;
+        }
 
-/* Estado Hover: Rojo al pasar el mouse (Efecto outline danger) */
-.btn-cerrar:hover {
-    color: #fff; /* Texto blanco */
-    background-color: #dc3545; /* Fondo rojo (Bootstrap danger) */
-    border-color: #dc3545; /* Borde rojo */
-}
+        /* Estado Hover: Rojo al pasar el mouse (Efecto outline danger) */
+        .btn-cerrar:hover {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
     </style>
 </head>
 <body>
 
 <div class="container-fluid">
     <div class="row">
+        <%-- Barra lateral de navegación --%>
         <nav class="col-md-2 d-none d-md-block sidebar p-4">
             <div class="text-center mb-4">
                 <img src="img/vehitrack_logo.jpg" alt="Logo" class="img-fluid logo-panel bg-white p-2 rounded">
@@ -66,8 +74,11 @@
             <hr>
             <ul class="nav flex-column">
                 <li class="nav-item mb-2"><a class="nav-link text-white fw-bold" href="#"> Inicio</a></li>
+                <%-- Enlace al listado de usuarios --%>
                 <li class="nav-item mb-2"><a class="nav-link text-white" href="UsuarioServlet?accion=listar">Usuarios</a></li>
+                <%-- Enlace al listado de vehículos --%>
                 <li class="nav-item mb-2"><a class="nav-link text-white" href="VehiculoServlet?accion=listar">Vehículos</a></li>
+                <%-- Botón para cerrar sesión y regresar al login --%>
                 <li class="nav-item mt-4"><a class="btn btn-cerrar btn-sm w-100" href="index.jsp">Cerrar Sesión</a></li>
             </ul>
         </nav>
@@ -76,12 +87,15 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Panel de Control</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
+                    <%-- Muestra el nombre del usuario logueado usando Expression Language (EL) --%>
                     <span class="badge bg-primary p-2">Usuario: ${usuarioLogueado.nombre} ${usuarioLogueado.apellido}</span>
                 </div>
             </div>
 
+            <%-- Tarjetas de acceso rápido a cada módulo del sistema --%>
             <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
                 
+                <%-- Tarjeta: Gestión de Usuarios --%>
                 <div class="col">
                     <a href="UsuarioServlet?accion=listar" class="text-decoration-none">
                         <div class="card h-100 card-menu shadow-sm border-start border-primary border-5">
@@ -94,6 +108,7 @@
                     </a>
                 </div>
 
+                <%-- Tarjeta: Mis Vehículos --%>
                 <div class="col">
                     <a href="VehiculoServlet?accion=listar" class="text-decoration-none">
                         <div class="card h-100 card-menu shadow-sm border-start border-success border-5">
@@ -106,8 +121,10 @@
                     </a>
                 </div>
 
+                <%-- Tarjeta: Mantenimiento --%>
                 <div class="col">
-                    <a href="VehiculoServlet?accion=listar" class="text-decoration-none"> <div class="card h-100 card-menu shadow-sm border-start border-warning border-5">
+                    <a href="VehiculoServlet?accion=listar" class="text-decoration-none">
+                        <div class="card h-100 card-menu shadow-sm border-start border-warning border-5">
                             <div class="card-body text-center py-5">
                                 <h1 class="display-4">🛠️</h1>
                                 <h4 class="card-title text-dark fw-bold">Mantenimiento</h4>
@@ -117,8 +134,10 @@
                     </a>
                 </div>
 
+                <%-- Tarjeta: Combustible --%>
                 <div class="col">
-                    <a href="VehiculoServlet?accion=listar" class="text-decoration-none"> <div class="card h-100 card-menu shadow-sm border-start border-danger border-5">
+                    <a href="VehiculoServlet?accion=listar" class="text-decoration-none">
+                        <div class="card h-100 card-menu shadow-sm border-start border-danger border-5">
                             <div class="card-body text-center py-5">
                                 <h1 class="display-4">⛽</h1>
                                 <h4 class="card-title text-dark fw-bold">Combustible</h4>

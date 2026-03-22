@@ -1,3 +1,11 @@
+<%-- 
+    Página: listar_combustible.jsp
+    Descripción: Muestra el historial de combustible de un vehículo específico
+    e incluye un formulario para registrar nuevos gastos. Recibe la lista desde
+    el CombustibleServlet mediante el atributo "combustibles".
+    Autor: Tania Quezada
+--%>
+<%-- Importación de la librería JSTL core --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,6 +22,7 @@
             <a href="VehiculoServlet?accion=listar" class="btn btn-outline-primary">Volver a Vehículos</a>
         </div>
 
+        <%-- Tabla que muestra el historial de combustible del vehículo --%>
         <table class="table table-bordered bg-white">
             <thead class="table-danger text-white">
                 <tr>
@@ -24,8 +33,10 @@
                 </tr>
             </thead>
             <tbody>
+                <%-- c:forEach recorre la lista "combustibles" enviada desde el Servlet --%>
                 <c:forEach var="c" items="${combustibles}">
                     <tr>
+                        <%-- Cada ${} imprime el valor del atributo del objeto combustible --%>
                         <td>${c.fecha}</td>
                         <td>${c.cantidad}</td>
                         <td class="text-success">$${c.costo}</td>
@@ -35,9 +46,12 @@
             </tbody>
         </table>
 
+        <%-- Formulario para registrar un nuevo gasto de combustible --%>
         <div class="card mt-4 p-3 border-danger">
             <form action="CombustibleServlet" method="POST" class="row g-2">
+                <%-- Campo oculto que indica al Servlet qué acción ejecutar --%>
                 <input type="hidden" name="accion" value="agregar">
+                <%-- Campo oculto que identifica el vehículo al que pertenece el gasto --%>
                 <input type="hidden" name="idVehiculo" value="${idVehiculoActual}">
                 <div class="col-md-3">
                     <label class="small">Fecha</label>
