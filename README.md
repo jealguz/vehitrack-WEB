@@ -24,7 +24,11 @@ VehiTrack es una solución integral diseñada para conductores y administradores
  `srcmainwebapp` Contiene las vistas JSP y recursos estáticos (CSSImágenes).
  `WEB-INF` Configuración del despliegue.
 
+<<<<<<< HEAD:README.md.txt
 ## 🛠️ Retos Técnicos y Soluciones (Bitácora de Desarrollo)
+=======
+#  Retos Técnicos y Soluciones (Bitácora de Desarrollo)
+>>>>>>> 9cbb404671e9d2c9a9274cb723c710bffdd83145:README.md
 
 Durante la codificación de este módulo, se enfrentaron y resolvieron los siguientes puntos críticos:
 
