@@ -2,7 +2,6 @@ package com.mycompany.vehitrackweb.servlet;
 
 import com.mycompany.vehitrackweb.dao.MantenimientoDAO;
 import com.mycompany.vehitrackweb.models.Mantenimiento;
-import com.mycompany.vehitrackweb.models.Usuario;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
