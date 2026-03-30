@@ -24,11 +24,7 @@ VehiTrack es una solución integral diseñada para conductores y administradores
  `srcmainwebapp` Contiene las vistas JSP y recursos estáticos (CSSImágenes).
  `WEB-INF` Configuración del despliegue.
 
-<<<<<<< HEAD:README.md.txt
-## 🛠️ Retos Técnicos y Soluciones (Bitácora de Desarrollo)
-=======
 #  Retos Técnicos y Soluciones (Bitácora de Desarrollo)
->>>>>>> 9cbb404671e9d2c9a9274cb723c710bffdd83145:README.md
 
 Durante la codificación de este módulo, se enfrentaron y resolvieron los siguientes puntos críticos:
 
@@ -48,6 +44,10 @@ Durante la codificación de este módulo, se enfrentaron y resolvieron los sigui
    * **Problema:** Sincronización entre el modelo de objetos en Java y la base de datos MySQL.
    * **Solución:** Se refinó el patrón **DAO (Data Access Object)** para asegurar que los registros de vehículos queden vinculados correctamente mediante el ID del usuario en sesión.
 
+5. **Documentación y Buenas Prácticas (Clean Code):**
+   * **Problema:** El código crecía en complejidad y se volvía difícil de mantener para el equipo.
+   * **Solución:** Se realizó una refactorización completa aplicando **JavaDoc** en todas las clases de Modelo y DAO. Se comentaron las responsabilidades de cada método, se estandarizaron los nombres de variables y se aseguró el encapsulamiento de los atributos.
+   
 ##  Autores
 Jeison Alvin Guzman Londoño
 Yulian Didier Gamboa Sanabria
