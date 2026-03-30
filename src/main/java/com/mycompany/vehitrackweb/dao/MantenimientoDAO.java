@@ -6,33 +6,35 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Clase DAO para gestionar las operaciones de persistencia de datos
- * relacionadas con los mantenimientos de los vehículos.
- */
 public class MantenimientoDAO {
-    // Objetos para la gestión de la base de datos
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
 
-    /**
-     * Consulta y devuelve una lista de todos los mantenimientos de un vehículo.
-     * @param idVehiculo ID del vehículo a consultar.
-     * @return List de objetos Mantenimiento encontrados.
-     */
+    // --- MÉTODO NUEVO PARA CAMBIO DE ESTADO (HU ID 09) ---
+    public boolean marcarComoRealizado(int idMantenimiento) {
+        // CURDATE() en MySQL pone la fecha actual automáticamente
+        String sql = "UPDATE mantenimiento SET fecha_realizacion = CURDATE() WHERE id_mantenimiento = ?";
+        try {
+            con = conectionDB.getConexion();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idMantenimiento);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al marcar como realizado: " + e.getMessage());
+            return false;
+        }
+    }
+
     public List<Mantenimiento> listarPorVehiculo(int idVehiculo) {
         List<Mantenimiento> lista = new ArrayList<>();
-        // Consulta para filtrar mantenimientos por el ID del vehículo
-        String sql = "SELECT * FROM mantenimiento WHERE id_vehiculo = ?";
+        String sql = "SELECT * FROM mantenimiento WHERE id_vehiculo = ? ORDER BY fecha_programada DESC";
         try {
-            // Obtención de conexión y preparación de la sentencia
             con = conectionDB.getConexion();
             ps = con.prepareStatement(sql);
             ps.setInt(1, idVehiculo);
             rs = ps.executeQuery();
             
-            // Mapeo de cada fila de la tabla al modelo Mantenimiento
             while (rs.next()) {
                 Mantenimiento m = new Mantenimiento();
                 m.setId_mantenimiento(rs.getInt("id_mantenimiento"));
@@ -41,40 +43,67 @@ public class MantenimientoDAO {
                 m.setFecha_realizacion(rs.getDate("fecha_realizacion"));
                 m.setDescripcion(rs.getString("descripcion"));
                 m.setCosto(rs.getDouble("costo"));
-                lista.add(m); // Agregado a la colección de retorno
+                m.setKilometraje_mantenimiento(rs.getInt("kilometraje_mantenimiento")); 
+                lista.add(m);
             }
         } catch (SQLException e) {
-            // Impresión de error en caso de fallo en la consulta SQL
-            System.err.println("Error en DAO Mantenimiento: " + e.getMessage());
+            System.err.println("Error en listarPorVehiculo: " + e.getMessage());
         }
         return lista;
     }
 
-    /**
-     * Inserta un nuevo registro de mantenimiento en la base de datos.
-     * @param m Objeto Mantenimiento con la información a guardar.
-     * @return 1 si la operación fue exitosa, 0 si ocurrió un error.
-     */
     public int agregar(Mantenimiento m) {
-        // Sentencia SQL de inserción
-        String sql = "INSERT INTO mantenimiento (id_vehiculo, fecha_programada, fecha_realizacion, descripcion, costo) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO mantenimiento (id_vehiculo, fecha_programada, fecha_realizacion, descripcion, costo, kilometraje_mantenimiento) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             con = conectionDB.getConexion();
             ps = con.prepareStatement(sql);
             
-            // Asignación de parámetros desde el objeto modelo
             ps.setInt(1, m.getId_vehiculo());
             ps.setDate(2, m.getFecha_programada());
-            ps.setDate(3, m.getFecha_realizacion());
+            
+            if (m.getFecha_realizacion() != null) {
+                ps.setDate(3, m.getFecha_realizacion());
+            } else {
+                ps.setNull(3, java.sql.Types.DATE);
+            }
+            
             ps.setString(4, m.getDescripcion());
             ps.setDouble(5, m.getCosto());
+            ps.setInt(6, m.getKilometraje_mantenimiento());
             
-            // Ejecución de la actualización
-            ps.executeUpdate();
+            return ps.executeUpdate();
         } catch (SQLException e) {
-            // Retorno de 0 en caso de excepción (error en la DB)
+            System.err.println("Error al agregar mantenimiento: " + e.getMessage());
             return 0;
         }
-        return 1; // Retorno de éxito
+    }
+
+    public List<Mantenimiento> obtenerAlertasPendientes(int idUsuario) {
+        List<Mantenimiento> alertas = new ArrayList<>();
+        String sql = "SELECT m.*, v.placa FROM mantenimiento m " +
+                     "JOIN vehiculo v ON m.id_vehiculo = v.id_vehiculo " +
+                     "WHERE v.id_usuario = ? AND m.fecha_realizacion IS NULL " + 
+                     "ORDER BY m.fecha_programada ASC";
+        try {
+            con = conectionDB.getConexion();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idUsuario);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Mantenimiento m = new Mantenimiento();
+                m.setId_mantenimiento(rs.getInt("id_mantenimiento"));
+                m.setId_vehiculo(rs.getInt("id_vehiculo"));
+                m.setPlaca(rs.getString("placa")); 
+                m.setDescripcion(rs.getString("descripcion"));
+                m.setFecha_programada(rs.getDate("fecha_programada"));
+                m.setCosto(rs.getDouble("costo"));
+                m.setKilometraje_mantenimiento(rs.getInt("kilometraje_mantenimiento"));
+                alertas.add(m);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error en obtenerAlertasPendientes: " + e.getMessage());
+        }
+        return alertas;
     }
 }

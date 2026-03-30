@@ -1,6 +1,9 @@
 com\mycompany\vehitrackweb\dao\UsuarioDAO.class
+com\mycompany\vehitrackweb\dao\FavoritoDAO.class
 com\mycompany\vehitrackweb\models\Usuario.class
 com\mycompany\vehitrackweb\models\Combustible.class
+com\mycompany\vehitrackweb\servlet\ExportarServlet.class
+com\mycompany\vehitrackweb\models\Favorito.class
 com\mycompany\vehitrackweb\servlet\CombustibleServlet.class
 com\mycompany\vehitrackweb\servlet\UsuarioServlet.class
 com\mycompany\vehitrackweb\servlet\MantenimientoServlet.class
@@ -13,3 +16,4 @@ com\mycompany\vehitrackweb\JakartaRestConfiguration.class
 com\mycompany\vehitrackweb\servlet\VehiculoServlet.class
 com\mycompany\vehitrackweb\models\Mantenimiento.class
 com\mycompany\vehitrackweb\conection\conectionDB.class
+com\mycompany\vehitrackweb\servlet\FavoritoServlet.class

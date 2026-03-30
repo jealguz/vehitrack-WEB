@@ -2,7 +2,9 @@ C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycom
 C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\dao\UsuarioDAO.java
 C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\dao\MantenimientoDAO.java
 C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\servlet\CombustibleServlet.java
+C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\dao\FavoritoDAO.java
 C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\servlet\MantenimientoServlet.java
+C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\models\Favorito.java
 C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\models\Usuario.java
 C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\conection\conectionDB.java
 C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\dao\VehiculoDAO.java
@@ -12,4 +14,6 @@ C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycom
 C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\dao\CombustibleDAO.java
 C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\models\Combustible.java
 C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\resources\JakartaEE8Resource.java
+C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\servlet\FavoritoServlet.java
 C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\servlet\VehiculoServlet.java
+C:\Users\Usuario\Documents\NetBeansProjects\vehitrackweb\src\main\java\com\mycompany\vehitrackweb\servlet\ExportarServlet.java

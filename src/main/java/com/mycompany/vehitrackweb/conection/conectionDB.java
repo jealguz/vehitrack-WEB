@@ -7,13 +7,13 @@ import java.sql.SQLException;
 /**
  * Clase conectionDB: Gestiona el enlace técnico entre la aplicación Java y MySQL.
  * Configurada para la base de datos de gestión de vehículos 'vehitrack_db'.
- * * @author Jeison Guzman
+ * @author Jeison Guzman
  */
 public class conectionDB {
     
-    // Configuración de los parámetros de conexión
-    // IMPORTANTE: Cambiamos 'sistema_prueva2' por 'vehitrack_db'
-    private static final String URL = "jdbc:mysql://localhost:3306/vehitrack_db?useSSL=false&serverTimezone=UTC";
+    // AJUSTE CRÍTICO: Hemos añadido &useUnicode=true&characterEncoding=UTF-8 
+    // Esto asegura que "Piñón" no se convierta en "PiÃ±Ã³n" al guardarse.
+    private static final String URL = "jdbc:mysql://localhost:3306/vehitrack_db?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8";
     private static final String USER = "root"; 
     private static final String PASS = "1234"; 
 
@@ -25,14 +25,12 @@ public class conectionDB {
         Connection con = null;
         try {
             // 1. Cargamos el Driver de MySQL (Conector J)
-            // Esto le dice a Java cómo hablar con el motor de MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
             
-            // 2. Intentamos establecer el puente con los credenciales definidos
+            // 2. Establecemos el puente con los parámetros de codificación incluidos
             con = DriverManager.getConnection(URL, USER, PASS);
             
-            // Mensaje de control en la consola de NetBeans
-            System.out.println("¡Conexión exitosa a VehiTrack DB!");
+            System.out.println("¡Conexión exitosa a VehiTrack DB (UTF-8 Activo)!");
             
         } catch (ClassNotFoundException e) {
             System.err.println("Error técnico: Driver de MySQL no detectado.");
